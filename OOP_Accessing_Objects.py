@@ -201,7 +201,7 @@ print(user_bank_act_1.get_password())
 
 - - For example, if someone on the team accesses or modifies a private/protected attribute directly (e.g., without using a setter), we lose control and visibility.
 
-- But by using getters and setters, we can:
+- But by using getters and setters methods, we can:
     - Track when the attribute was accessed or changed
     - Validate or sanitize new values
     - Log access/modification times or events
