@@ -124,3 +124,48 @@ print(BankAccount.is_valid_interest_rate(4))
         
 
 
+"""
+It is important to note that we can also make methods protected or privatized 
+
+"""
+
+##protecting methods 
+
+class BankAccount:
+    Min_Balance= 100
+
+    def __init__(self, owner, balance=0 ):
+        self.owner= owner
+        self._balance= balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self._balance += amount
+            self.__log_transaction("deposit", amount)
+            print(f"{self.owner}'s new balance is: ${self._balance}")
+        else:
+            print("Deposit amount must be positve")
+
+    def withdraw(self, amount): ##this is for withdrawing funds
+        if amount < self._balance:
+            self._balance -= amount
+            self.__log_transaction("withdrawal", amount)
+        else:
+            print("You withdrawal is more than your balance ")
+    
+    def _is_valid_amount(self, amount): ##we created a protected amount 
+        return amount > 0
+    
+    def __log_transaction(self, transaction_type, amount): ## this is a private class 
+        print(f"Logging the {transaction_type} of ${amount}. New Balance is ${self._balance}")
+
+
+    @staticmethod ## this static method belongs to the class 
+    def is_valid_interest_rate(rate):
+            return 0 <= rate <= 5
+
+account= BankAccount("Alice", 500)
+
+account.deposit(400)
+
+account.withdraw(600)
